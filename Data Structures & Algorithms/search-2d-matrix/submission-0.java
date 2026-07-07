@@ -1,0 +1,45 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+       int ROWS = matrix.length;
+       int COLS = matrix[0].length;
+
+       int top = 0, bott = ROWS-1;
+
+       while(top <= bott)
+       {
+        int row = (top + bott) / 2;
+        if(target > matrix[row][COLS-1])
+        {
+            top = row + 1;
+        }
+        else if(target < matrix[row][0])
+        {
+            bott = row - 1;
+        }
+        else{
+            break;
+        }
+       }
+
+       if(!(top <= bott))
+       {
+        return false;
+       }
+       int row = (top + bott) / 2;
+       int l = 0, r = COLS - 1;
+       while(l <= r)
+       {
+        int m = (l + r) / 2;
+        if (target > matrix[row][m]) {
+                l = m + 1;
+            } else if (target < matrix[row][m]) {
+                r = m - 1;
+            } else {
+                return true;
+            }
+        }
+        return false;
+       }
+       
+    }
+
